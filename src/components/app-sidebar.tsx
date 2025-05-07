@@ -8,6 +8,7 @@ import {
   Command,
   Frame,
   GalleryVerticalEnd,
+  Gamepad2,
   Map,
   PieChart,
   Settings2,
@@ -35,17 +36,17 @@ const data = {
   },
   teams: [
     {
-      name: "Acme Inc",
-      logo: GalleryVerticalEnd,
+      name: "Mentor",
+      logo: Gamepad2,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
+      name: "Administrator",
       logo: AudioWaveform,
       plan: "Startup",
     },
     {
-      name: "Evil Corp.",
+      name: "Director",
       logo: Command,
       plan: "Free",
     },
