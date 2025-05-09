@@ -3,6 +3,7 @@
 import * as React from "react"
 import {
   AudioWaveform,
+  Book,
   BookOpen,
   Bot,
   Command,
@@ -11,8 +12,11 @@ import {
   Gamepad2,
   Map,
   PieChart,
+  Settings,
   Settings2,
+  Sparkles,
   SquareTerminal,
+  User,
 } from "lucide-react"
 
 import { NavMain } from "@/components/nav-main"
@@ -30,131 +34,158 @@ import {
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
+    name: "laastrog",
+    email: "laastrog@yandex.ru",
     avatar: "/avatars/shadcn.jpg",
   },
   teams: [
     {
       name: "Mentor",
-      logo: Gamepad2,
-      plan: "Enterprise",
+      logo: Book,
+      plan: "Наставик",
+      
     },
     {
       name: "Administrator",
-      logo: AudioWaveform,
-      plan: "Startup",
+      logo: Frame,
+      plan: "Универсальный специалист",
     },
     {
       name: "Director",
       logo: Command,
-      plan: "Free",
+      plan: "Руководитель ораганизации",
     },
   ],
   navMain: [
     {
-      title: "Playground",
+      title: "Сервисы",
       url: "#",
-      icon: SquareTerminal,
+      icon: Sparkles,
       isActive: true,
       items: [
         {
-          title: "History",
+          title: "Доска",
+          url: "/dashboard",
+        },
+        {
+          title: "Классный журнал",
           url: "#",
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
+          title: "Расчёт заработной платы",
           url: "#",
         },
       ],
     },
     {
-      title: "Models",
+      title: "Клиентура",
       url: "#",
-      icon: Bot,
+      icon: User,
       items: [
         {
-          title: "Genesis",
+          title: "Транзакции",
           url: "#",
         },
         {
-          title: "Explorer",
+          title: "База данных",
           url: "#",
         },
         {
-          title: "Quantum",
+          title: "Абонементы",
+          url: "#",
+        },
+        {
+          title: "Примечание",
           url: "#",
         },
       ],
     },
     {
-      title: "Documentation",
+      title: "Документация",
       url: "#",
       icon: BookOpen,
       items: [
         {
-          title: "Introduction",
+          title: "Обратная связь",
           url: "#",
         },
         {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
+          title: "Журнал изменения",
           url: "#",
         },
       ],
     },
     {
-      title: "Settings",
+      title: "Настройки",
       url: "#",
-      icon: Settings2,
+      icon: Settings,
       items: [
         {
-          title: "General",
+          title: "Общее",
           url: "#",
         },
         {
-          title: "Team",
+          title: "Команда",
           url: "#",
         },
-        {
-          title: "Billing",
-          url: "#",
-        },
-        {
-          title: "Limits",
-          url: "#",
-        },
+
       ],
     },
+    
   ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
+  // dev:[
+  //   {
+  //     title: "Документация",
+  //     url: "#",
+  //     icon: BookOpen,
+  //     items: [
+  //       {
+  //         title: "Обратная связь",
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Журнал изменения",
+  //         url: "#",
+  //       },
+  //     ],
+  //   },
+  //   {
+  //     title: "Настройки",
+  //     url: "#",
+  //     icon: Settings,
+  //     items: [
+  //       {
+  //         title: "Общее",
+  //         url: "#",
+  //       },
+  //       {
+  //         title: "Команда",
+  //         url: "#",
+  //       },
+
+  //     ],
+  //   },
+  // ]
+  
+  // projects: [
+  //   {
+  //     name: "Design Engineering",
+  //     url: "#",
+  //     icon: Frame,
+  //   },
+  //   {
+  //     name: "Sales & Marketing",
+  //     url: "#",
+  //     icon: PieChart,
+  //   },
+  //   {
+  //     name: "Travel",
+  //     url: "#",
+  //     icon: Map,
+  //   },
+    
+  // ],
+  
 }
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -165,9 +196,10 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        {/* <NavProjects projects={data.projects} /> */}
       </SidebarContent>
       <SidebarFooter>
+      {/* <NavMain items={data.dev} /> */}
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
