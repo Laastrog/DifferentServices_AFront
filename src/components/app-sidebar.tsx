@@ -36,7 +36,7 @@ const data = {
   user: {
     name: "laastrog",
     email: "laastrog@yandex.ru",
-    avatar: "/avatars/shadcn.jpg",
+    avatar: "",
   },
   teams: [
     {
@@ -83,12 +83,13 @@ const data = {
       icon: User,
       items: [
         {
-          title: "Транзакции",
-          url: "#",
+          // title: "Транзакции",
+          title: "Новый клиент",
+          url: "/clients/new",
         },
         {
           title: "База данных",
-          url: "#",
+          url: "/clients",
         },
         {
           title: "Абонементы",

@@ -47,20 +47,47 @@ export default function Navigation({ children }: NavigationProps) {
                 <BreadcrumbPage>Main</BreadcrumbPage>
                 </BreadcrumbItem>
                 
-              ) : (
+              ) : pathName === "/dashboard" ? (
                 <>
                 {/* asChild кидает в слот, который передаёт нижнему элементу внешку */}
                   <BreadcrumbLink asChild>
                     <Link href="/">Main</Link>
                   </BreadcrumbLink>
-                  <BreadcrumbSeparator className="hidden md:block" />
+                  <BreadcrumbSeparator className=" md:block" />
                   <BreadcrumbItem>
                 <BreadcrumbPage>Dashboard</BreadcrumbPage>
                 </BreadcrumbItem>
                 </>
-              )
+              ) : pathName === "/clients" ?(
+               <>
+                {/* asChild кидает в слот, который передаёт нижнему элементу внешку */}
+                  <BreadcrumbLink asChild>
+                    <Link href="/">Main</Link>
+                  </BreadcrumbLink>
+                  <BreadcrumbSeparator className=" md:block" />
+                  <BreadcrumbItem>
+                <BreadcrumbPage>Clients</BreadcrumbPage>
+                </BreadcrumbItem>
+                </>
+              ) : pathName === "/clients/new" ?(
+                <>
+                 {/* asChild кидает в слот, который передаёт нижнему элементу внешку */}
+                   <BreadcrumbLink asChild>
+                     <Link href="/">Main</Link>
+                   </BreadcrumbLink>
+                   <BreadcrumbSeparator className=" md:block" />
+                   <BreadcrumbLink asChild>
+                     <Link href="/clients">Clients</Link>
+                   </BreadcrumbLink>
+                   <BreadcrumbSeparator className=" md:block" />
+                   <BreadcrumbItem>
+                 <BreadcrumbPage>AddClient</BreadcrumbPage>
+                 </BreadcrumbItem>
+                 </>
+               ): null
               
               }
+
                 {/* <BreadcrumbLink asChild>
                 <Link href="/dashboard"></Link>
                   </BreadcrumbLink> */}
