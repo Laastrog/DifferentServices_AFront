@@ -113,8 +113,12 @@
   --sidebar-ring: oklch(0.552 0.016 285.938);
 }
 /* Если нужно применить ко всем текстовым элементам */ 
-p, h1, h2, h3, h4, h5, h6, span, div {
+p, h1, h2, h3, h4, h6, span, div {
   font-family: var(--font-cormorant-garamond), sans-serif !important;
+}
+h5 {
+  font-family: OpenSans, sans-serif;
+  font-weight: 400;
 }
 
 @layer base {
