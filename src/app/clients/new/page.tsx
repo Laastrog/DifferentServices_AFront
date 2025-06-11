@@ -2,6 +2,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createClient } from "./action";
+import Navigation from "@/components/navigation";
+import path from "path";
 
 // const handle = (e:any) =>{
 //     e.preventDefault();
@@ -9,7 +11,24 @@ import { createClient } from "./action";
 // }
 
 export default function PageClientsNew() {
+    const breadcrumb = [
+        {
+          type: "link",
+          text: "Main",
+          path: "/"
+        },
+        {
+            type: "text",
+            text: "Clients",
+            path: "/clients"
+        },
+        {
+            type: "text",
+            text: "AddClient"
+        }
+      ];
     return (
+        <Navigation>
         <>
             <h1 className="text-2xl font-bold mx-auto m-6">Форма добавления клиента:</h1>
             <form action={createClient} className="flex flex-col gap-4 w-md mx-auto m-4">
@@ -61,5 +80,6 @@ export default function PageClientsNew() {
                 <Input name="patronymic" placeholder="Отчество"/> */}
             </form>
         </>
+        </Navigation>
     )
 }

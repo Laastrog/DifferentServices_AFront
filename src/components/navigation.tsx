@@ -1,7 +1,6 @@
 "use client"
 
 import { ReactNode } from "react";
-
 import { AppSidebar } from "@/components/app-sidebar";
 import {
   Breadcrumb,
@@ -19,15 +18,20 @@ import {
 } from "@/components/ui/sidebar";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import React from "react";
 
 interface NavigationProps {
   children: ReactNode;
-  breadcrumb?: [];
+  breadcrumb?: {
+    type: string
+    text: string
+    path?: string
+  }[];
 }
 
 // Двоеточием описываем тип данных(: Означает что пошёл TS)
-export default function Navigation({ children }: NavigationProps) {
-  const pathName = usePathname();
+export default function Navigation({ children, breadcrumb }: NavigationProps) {
+ 
   return (
     <SidebarProvider>
       <AppSidebar />
@@ -41,57 +45,23 @@ export default function Navigation({ children }: NavigationProps) {
             />
             <Breadcrumb>
               <BreadcrumbList>
-
-              {pathName === "/" ? (
-                <BreadcrumbItem>
-                <BreadcrumbPage>Main</BreadcrumbPage>
-                </BreadcrumbItem>
-                
-              ) : pathName === "/dashboard" ? (
-                <>
-                {/* asChild кидает в слот, который передаёт нижнему элементу внешку */}
-                  <BreadcrumbLink asChild>
-                    <Link href="/">Main</Link>
-                  </BreadcrumbLink>
-                  <BreadcrumbSeparator className=" md:block" />
+              {!breadcrumb ? null : breadcrumb.map((val:any, i) => (
+                val.type == "text" ? ( 
+                <React.Fragment key={i}>
+                  {i == 0 ? null : <BreadcrumbSeparator className=" md:block" />}
                   <BreadcrumbItem>
-                <BreadcrumbPage>Dashboard</BreadcrumbPage>
-                </BreadcrumbItem>
-                </>
-              ) : pathName === "/clients" ?(
-               <>
-                {/* asChild кидает в слот, который передаёт нижнему элементу внешку */}
-                  <BreadcrumbLink asChild>
-                    <Link href="/">Main</Link>
-                  </BreadcrumbLink>
-                  <BreadcrumbSeparator className=" md:block" />
-                  <BreadcrumbItem>
-                <BreadcrumbPage>Clients</BreadcrumbPage>
-                </BreadcrumbItem>
-                </>
-              ) : pathName === "/clients/new" ?(
-                <>
-                 {/* asChild кидает в слот, который передаёт нижнему элементу внешку */}
-                   <BreadcrumbLink asChild>
-                     <Link href="/">Main</Link>
-                   </BreadcrumbLink>
-                   <BreadcrumbSeparator className=" md:block" />
-                   <BreadcrumbLink asChild>
-                     <Link href="/clients">Clients</Link>
-                   </BreadcrumbLink>
-                   <BreadcrumbSeparator className=" md:block" />
-                   <BreadcrumbItem>
-                 <BreadcrumbPage>AddClient</BreadcrumbPage>
-                 </BreadcrumbItem>
-                 </>
-               ): null
-              
-              }
-
-                {/* <BreadcrumbLink asChild>
-                <Link href="/dashboard"></Link>
-                  </BreadcrumbLink> */}
-
+                    <BreadcrumbPage>{val.text}</BreadcrumbPage>
+                  </BreadcrumbItem>
+                </React.Fragment>
+                ) : ( 
+                  <React.Fragment key={i}>
+                    <BreadcrumbSeparator className=" md:block" />
+                    <BreadcrumbLink asChild>
+                      {/* <Link href={val.path}>{val.text}</Link> */}
+                    </BreadcrumbLink>
+                  </React.Fragment>
+                  )
+              ))}
               </BreadcrumbList>
             </Breadcrumb>
           </div>

@@ -35,7 +35,8 @@ export default function RootLayout({
       <body
         className={`${cormorantGaramond.variable} font-sans`}
       >
-        <Navigation>{children}</Navigation>
+        {children}
+        {/* <Navigation>{children}</Navigation> */}
         
       </body>
     </html>
