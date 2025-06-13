@@ -48,7 +48,7 @@ export default function Navigation({ children, breadcrumb }: NavigationProps) {
               {!breadcrumb ? null : breadcrumb.map((val:any, i) => (
                 val.type == "text" ? ( 
                 <React.Fragment key={i}>
-                  {i == 0 ? null : <BreadcrumbSeparator className=" md:block" />}
+                  {i == 0 ? null : <BreadcrumbSeparator className= "md:block" />}
                   <BreadcrumbItem>
                     <BreadcrumbPage>{val.text}</BreadcrumbPage>
                   </BreadcrumbItem>
@@ -57,7 +57,7 @@ export default function Navigation({ children, breadcrumb }: NavigationProps) {
                   <React.Fragment key={i}>
                     <BreadcrumbSeparator className=" md:block" />
                     <BreadcrumbLink asChild>
-                      {/* <Link href={val.path}>{val.text}</Link> */}
+                      <Link href={val.path}>{val.text}</Link>
                     </BreadcrumbLink>
                   </React.Fragment>
                   )

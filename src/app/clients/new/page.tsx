@@ -28,27 +28,27 @@ export default function PageClientsNew() {
         }
       ];
     return (
-        <Navigation>
+        <Navigation breadcrumb={breadcrumb}>
         <>
             <h1 className="text-2xl font-bold mx-auto m-6">Форма добавления клиента:</h1>
             <form action={createClient} className="flex flex-col gap-4 w-md mx-auto m-4">
                 
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-3">
                     <p className="text-lg font-bold inline">Мобильный телефон</p>
                     <Input name="phone" /> 
                      
                 </div>
-                <div className="flex items-center gap-13" >
+                <div className="flex items-center gap-14" >
                     <p className="text-lg font-bold inline">Фамилия</p>
                     <Input name="secondName" /> 
                      
                 </div>
-                <div className="flex items-center gap-20">
+                <div className="flex items-center gap-22">
                     <p className="text-lg font-bold inline">Имя</p>
                     <Input name="firstName" /> 
                      
                 </div>
-                <div className="flex items-center gap-12">
+                <div className="flex items-center gap-13">
                     <p className="text-lg font-bold inline">Отчество</p>
                     <Input name="patronymic" /> 
                      

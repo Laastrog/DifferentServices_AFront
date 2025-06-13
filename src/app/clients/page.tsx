@@ -1,5 +1,6 @@
 import Navigation from "@/components/navigation"
 import Link from "next/link"
+import AddClientNewMember from "./[clientUuid]/components/add-client-new-member";
 
 export default async function PageClients(){
 
@@ -27,7 +28,6 @@ export default async function PageClients(){
             {data.map((value:any)=> (
                 <h5 key={value.uuid}> 
                     <Link href={"/clients/"+ value.uuid}>
-                    {}
                     {value.uuid}
                     </Link>
                 </h5>

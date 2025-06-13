@@ -1,4 +1,5 @@
 import Navigation from "@/components/navigation"
+import AddClientNewMember from "./components/add-client-new-member"
 
 
 export default async function ClientIdPage({params}:{params:{clientUuid:string, }}){
@@ -18,7 +19,7 @@ export default async function ClientIdPage({params}:{params:{clientUuid:string, 
           path: "/"
         },
         {
-            type: "text",
+            type: "link",
             text: "Clients",
             path: "/clients"
         }, 
@@ -30,16 +31,18 @@ export default async function ClientIdPage({params}:{params:{clientUuid:string, 
 
     return(
         <Navigation breadcrumb={breadcrumb}>
+        <div><AddClientNewMember/></div>
         <>
             <h2>Info to client:</h2>
                 <div>
                     <h5>{data.members.map((members:any) =>(
                         <div key={members.uuid}>
-                            <h5>Uuid: {members.uuid}</h5>
-                            <h5>Номер телефона: {members.phone}</h5>
-                            <h5>Фамилия: {members.secondName}</h5>
-                            <h5>Имя: {members.firstName}</h5>
-                            <h5>Отчество: {members.patronymic}</h5>
+                            
+                            <h5>Uuid: {members.uuid};</h5>
+                            <h5>Номер телефона: {members.phone};</h5>
+                            <h5>Фамилия: {members.secondName};</h5>
+                            <h5>Имя: {members.firstName};</h5>
+                            <h5>Отчество: {members.patronymic}.</h5>
                         </div>
                     ))}
                     </h5>
