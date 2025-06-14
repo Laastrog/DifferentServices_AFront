@@ -18,7 +18,7 @@ export default function PageClientsNew() {
           path: "/"
         },
         {
-            type: "text",
+            type: "link",
             text: "Clients",
             path: "/clients"
         },

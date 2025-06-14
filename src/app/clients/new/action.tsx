@@ -23,7 +23,8 @@ export async function createClient(formdata: FormData){
             phone,
             firstName,
             secondName,
-            patronymic
+            patronymic,
+            member: false
         })
     })
     // Результат выполонения запроса
