@@ -46,7 +46,9 @@ export default function AddClientNewMember({mainMemberPhone}:{mainMemberPhone:st
                       <Input id="phone" 
                       
                       onPaste={(e) => {e.preventDefault(); }}
-                       name="phone" onChange={(e) =>  handlePhoneChange(e.target.value)} value={phone}  disabled={isSetMainMemberPhone}  />
+                       name="phone" onChange={(e) =>  handlePhoneChange(e.target.value)} value={phone}  
+                      //  disabled={isSetMainMemberPhone}  
+                       />
                     </div>
                     <div className="grid gap-3">
                       <Label htmlFor="secondName">Фамилия:</Label>
