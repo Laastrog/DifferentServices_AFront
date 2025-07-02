@@ -3,13 +3,28 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { AddClientNewMembers } from "./action"
+import { AddClientNewMembers } from "../action"
 import { useState } from "react"
+import { redirect } from "next/dist/server/api-utils"
+import { unificationPhone } from "@/lib/unificationPhone"
 
 export default function AddClientNewMember({mainMemberPhone}:{mainMemberPhone:string}){
-  const [phone, setPhone] = useState<string>('')
+  const [phone, setPhone] = useState<string>('+7')
+  const [isSetMainMemberPhone, setIsSetMainMemberPhone] = useState<boolean>(false)
+
+  const handlePhoneChange = (value: string) =>{
+              const number = unificationPhone(value)
+              if(number) setPhone(number)
+
+  }
+
   const setMainMemberPhone = () => {
     setPhone(mainMemberPhone)
+    setIsSetMainMemberPhone(true)
+  }
+   function clearPhoneInput() {
+     setPhone('+7')
+     setIsSetMainMemberPhone(false)
   }
     return(
             <Dialog>
@@ -18,6 +33,7 @@ export default function AddClientNewMember({mainMemberPhone}:{mainMemberPhone:st
                 </DialogTrigger>
               <DialogContent className="sm:max-w-[425px]">
               <form className="flex flex-col gap-6" action={AddClientNewMembers}>
+                <input type="hidden" name="mainMemberPhone" value={mainMemberPhone} />
                   <DialogHeader>
                     <DialogTitle>Добавление участника</DialogTitle>
                     <DialogDescription className="bold">
@@ -26,9 +42,11 @@ export default function AddClientNewMember({mainMemberPhone}:{mainMemberPhone:st
                   </DialogHeader>
                   <div className="grid gap-4">
                     <div className="grid gap-3">
-                      {/* Сделать ввиде италика текста кнопку с телефоном родителя */}
-                      <Label className="grid gap-3" htmlFor="phone">Номер телефона: <Button onClick={setMainMemberPhone} type="button" variant="outline" className=" text-black italic mw">(Вставить телефон родителя)</Button></Label>
-                      <Input id="phone" name="phone" onChange={(e) => setPhone(e.target.value)} value={phone} />
+                      <Label className="gap-1" htmlFor="phone">Номер телефона: <Button onClick={setMainMemberPhone} type="button" variant="link" className=" text-black italic mw ml-auto ">(Вставить телефон родителя)</Button></Label>
+                      <Input id="phone" 
+                      
+                      onPaste={(e) => {e.preventDefault(); }}
+                       name="phone" onChange={(e) =>  handlePhoneChange(e.target.value)} value={phone}  disabled={isSetMainMemberPhone}  />
                     </div>
                     <div className="grid gap-3">
                       <Label htmlFor="secondName">Фамилия:</Label>
@@ -46,7 +64,10 @@ export default function AddClientNewMember({mainMemberPhone}:{mainMemberPhone:st
                   <DialogFooter className="">
                     <Button  type="submit">Сохранить контакт</Button>
                     <DialogClose asChild>
-                      <Button variant="outline">Отмена</Button>
+                      <Button onClick={() => {
+                        setIsSetMainMemberPhone(false)
+                        clearPhoneInput()
+                        }} variant="outline">Отмена</Button>
                     </DialogClose>
                   </DialogFooter>
                 

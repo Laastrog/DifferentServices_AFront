@@ -3,6 +3,7 @@
 export async function AddClientNewMembers(formdata: FormData){
     // Получаем данные из формы
     const phone = formdata.get("phone");
+    const mainMemberPhone = formdata.get("mainMemberPhone");
     const firstName = formdata.get("firstName");
     const secondName = formdata.get("secondName");
     const patronymic = formdata.get("patronymic");
@@ -22,7 +23,8 @@ export async function AddClientNewMembers(formdata: FormData){
                 firstName,
                 secondName,
                 patronymic,
-                member: true
+                member: true,
+                mainMemberPhone
             })
         })
 }

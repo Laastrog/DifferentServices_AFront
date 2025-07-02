@@ -22,7 +22,7 @@ export default async function PageClients(){
     
     return(
         <Navigation breadcrumb={breadcrumb}>
-        <>
+        <div className=''>
             <h1 className="text-3xl">List all clients here:</h1>
             {data.length == 0 ? "Клиентов нет" : null}
             {data.map((value:any)=> (
@@ -32,7 +32,7 @@ export default async function PageClients(){
                     </Link>
                 </h5>
             ))}
-        </>
+        </div>
         </Navigation>
     )
 }

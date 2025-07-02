@@ -55,7 +55,7 @@ export default function Navigation({ children, breadcrumb }: NavigationProps) {
                 </React.Fragment>
                 ) : ( 
                   <React.Fragment key={i}>
-                    <BreadcrumbSeparator className=" md:block" />
+                    {i == 0 ? null : <BreadcrumbSeparator className=" md:block" />}
                     <BreadcrumbLink asChild>
                       <Link href={val.path}>{val.text}</Link>
                     </BreadcrumbLink>

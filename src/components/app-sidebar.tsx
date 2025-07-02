@@ -81,6 +81,7 @@ const data = {
       title: "Клиентура",
       url: "#",
       icon: User,
+      isActive: true,
       items: [
         {
           // title: "Транзакции",
