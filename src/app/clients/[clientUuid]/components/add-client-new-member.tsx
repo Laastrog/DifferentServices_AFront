@@ -31,32 +31,7 @@ export default function AddClientNewMember({mainMemberPhone}:{mainMemberPhone:st
         const number = unificationPhone(value)
         if (number) {
           setPhone(number)
-          setFormValues({
-            ...formValues,
-            phone: number
-          })
         }
-      }
-  
-      const handleFirstNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormValues({
-          ...formValues,
-          firstName: e.target.value
-        })
-      }
-
-      const handleFirstSecondNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormValues({
-          ...formValues,
-          secondName: e.target.value
-        })
-      }
-
-      const handleFirstPatronymicChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setFormValues({
-          ...formValues,
-          patronymic: e.target.value
-        })
       }
   
 
