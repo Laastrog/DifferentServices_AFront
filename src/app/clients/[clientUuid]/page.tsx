@@ -1,5 +1,6 @@
 import Navigation from "@/components/navigation"
 import AddClientNewMembers from "./components/add-client-new-member"
+import ClientApp from "@/components/client-app"
 
 
 export default async function ClientIdPage({params}:{params:{clientUuid:string, }}){
@@ -31,33 +32,7 @@ export default async function ClientIdPage({params}:{params:{clientUuid:string, 
 
     return(
         <Navigation breadcrumb={breadcrumb}>
-        <>
-            <h1 className="flex flex-col text-3xl ">Просмотр всех членов семьи:</h1>
-            <div className=""><AddClientNewMembers mainMemberPhone={data.mainMember.phone}/></div>
-        </>
-        <div>
-            <h2 className="text-2xl mb-2r">Главный член семьи: </h2>
-            <div className="flex gap-1 pl-4 flex-col"><h5 >Номер телефона: {data.mainMember.phone};</h5>
-            <h5>Имя: {data.mainMember.firstName};</h5>
-            <h5>Фамилия: {data.mainMember.secondName};</h5>
-            <h5>Отчество: {data.mainMember.patronymic}.</h5></div>
-            
-        </div>
-<hr/>
-                <div className="">
-                    <h5>{data.members.map((members:any) =>(
-                        <div className="gap-2 " key={members.uuid}>
-                            {/* <h2 className="text-2xl">Главный член семьи:</h2> */}
-                            <h5>Uuid: {members.uuid};</h5>
-                            <h5>Номер телефона: {members.phone};</h5>
-                            <h5>Фамилия: {members.secondName};</h5>
-                            <h5>Имя: {members.firstName};</h5>
-                            <h5>Отчество: {members.patronymic}.</h5>
-                            <br/>
-                        </div>
-                    ))}
-                    </h5>
-                </div> 
+       <ClientApp data={data}/>
             {/* <div><h5>{params.clientUuid}</h5></div> */}
             
         

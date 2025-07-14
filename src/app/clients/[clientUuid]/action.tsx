@@ -45,9 +45,9 @@ export async function AddClientNewMembers(state: PrevStateProps,formdata: FormDa
         if(data.error){
             return{
                 messages: data.message,
-                firstName: firstName,
-                secondName: secondName,
-                patronymic: patronymic
+                firstName,
+                secondName,
+                patronymic
             }
             
         }
@@ -63,9 +63,9 @@ export async function AddClientNewMembers(state: PrevStateProps,formdata: FormDa
     if(clientUuid) redirect('/clients/'+ clientUuid)
     return{
             messages: [],
-            firstName: firstName,
-            secondName: secondName,
-            patronymic: patronymic
+            firstName,
+            secondName,
+            patronymic
         }
     
         
