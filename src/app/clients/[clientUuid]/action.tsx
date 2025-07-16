@@ -1,5 +1,6 @@
 "use server"
 
+import { MemberProps } from "@/components/client-app";
 import { redirect } from "next/navigation";
 
 export interface PrevStateProps{
@@ -9,7 +10,6 @@ export interface PrevStateProps{
     secondName?: string
     patronymic?: string
     clientUuid?: string
-    member?: string
 }
 
 export async function AddClientNewMembers(state: PrevStateProps,formdata: FormData){
@@ -50,7 +50,7 @@ export async function AddClientNewMembers(state: PrevStateProps,formdata: FormDa
                 messages: data.message,
                 firstName,
                 secondName,
-                patronymic
+                patronymic,
             }
             
         }
@@ -64,6 +64,7 @@ export async function AddClientNewMembers(state: PrevStateProps,formdata: FormDa
             firstName,
             secondName,
             patronymic
+
 
         }
     }

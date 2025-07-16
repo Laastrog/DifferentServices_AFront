@@ -35,10 +35,14 @@ export default function ClientApp({data}:ClientAppProps){
     const [members, setMembers] = useState<MemberProps[]>(data.members)
     const [open, SetOpen] = useState<boolean>(false)
     const [state, formAction, pending] = useActionState(AddClientNewMembers, initialState)
+    const [phone, setPhone] = useState<string>('+7')
 
     useEffect(()=>{
         function handleState(){
             console.log("HANDLE STATE",state)
+            // if(state.member){
+            //     setMembers([ state.member, ...members])
+            // }
         }
         handleState()
     },[state])
@@ -48,7 +52,7 @@ export default function ClientApp({data}:ClientAppProps){
                 <>
                     <h1 className="flex flex-col text-3xl ">Просмотр всех членов семьи:</h1>
                     <div>
-                        <AddClientNewMember mainMemberPhone={data.mainMember.phone} open={open} SetOpen={SetOpen} state={state} formAction={formAction} pending={pending}/>
+                        <AddClientNewMember mainMemberPhone={data.mainMember.phone} open={open} SetOpen={SetOpen} state={state} formAction={formAction} pending={pending} phone={phone}setPhone={setPhone}/>
                     </div>
                 </>
                 <div>

@@ -18,11 +18,11 @@ const initialState  = {
 }
 
 export default function AddClientNewMember(
-  {mainMemberPhone, open, SetOpen, state, formAction, pending}
-  :{mainMemberPhone:string, open:boolean, SetOpen:(val:boolean) => void, state:PrevStateProps, formAction:any, pending:boolean}
+  {mainMemberPhone, open, SetOpen, state, formAction, pending, phone, setPhone}
+  :{mainMemberPhone:string, open:boolean, SetOpen:(val:boolean) => void, state:PrevStateProps, formAction:any, pending:boolean, phone:string, setPhone:(val:string) => void}
 ){
   // const [state, formAction, pending] = useActionState(AddClientNewMembers, initialState)
-  const [phone, setPhone] = useState<string>('+7')
+  // const [phone, setPhone] = useState<string>('+7')
   const [isSetMainMemberPhone, setIsSetMainMemberPhone] = useState<boolean>(false)
   const [formValues, setFormValues] = useState({
     phone: '+7',
@@ -39,14 +39,14 @@ export default function AddClientNewMember(
       }
   
 
-  const setMainMemberPhone = () => {
-    setPhone(mainMemberPhone)
-    setIsSetMainMemberPhone(true)
-  }
-   function clearPhoneInput() {
-     setPhone(isSetMainMemberPhone ? '+7' :mainMemberPhone)
-     setIsSetMainMemberPhone(!setIsSetMainMemberPhone)
-  }
+      const setMainMemberPhone = () => {
+        setPhone(mainMemberPhone)
+        setIsSetMainMemberPhone(true)
+      }
+       function clearPhoneInput() {
+         setPhone('+7')
+         setIsSetMainMemberPhone(!setIsSetMainMemberPhone)
+      }
     return(
             <Dialog>
               <DialogTrigger asChild>
@@ -104,6 +104,12 @@ export default function AddClientNewMember(
                       <Button onClick={() => {
                         setIsSetMainMemberPhone(false)
                         clearPhoneInput()
+                        setFormValues({
+                          phone: '+7',
+                          firstName: '',
+                          secondName: '',
+                          patronymic: ''
+                        })
                         }} variant="outline">Отмена</Button>
                     </DialogClose>
                 
