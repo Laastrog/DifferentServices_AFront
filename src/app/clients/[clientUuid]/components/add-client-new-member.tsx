@@ -3,10 +3,11 @@ import { Button } from "@/components/ui/button"
 import { Dialog, DialogClose, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { AddClientNewMembers } from "../action"
+import { AddClientNewMembers, PrevStateProps } from "../action"
 import { useActionState, useState } from "react"
 import { redirect } from "next/dist/server/api-utils"
 import { unificationPhone } from "@/lib/unificationPhone"
+
 
 const initialState  = {
   messages: [],
@@ -16,8 +17,11 @@ const initialState  = {
   patronymic: ''
 }
 
-export default function AddClientNewMember({mainMemberPhone}:{mainMemberPhone:string}){
-  const [state, formAction, pending] = useActionState(AddClientNewMembers, initialState)
+export default function AddClientNewMember(
+  {mainMemberPhone, open, SetOpen, state, formAction, pending}
+  :{mainMemberPhone:string, open:boolean, SetOpen:(val:boolean) => void, state:PrevStateProps, formAction:any, pending:boolean}
+){
+  // const [state, formAction, pending] = useActionState(AddClientNewMembers, initialState)
   const [phone, setPhone] = useState<string>('+7')
   const [isSetMainMemberPhone, setIsSetMainMemberPhone] = useState<boolean>(false)
   const [formValues, setFormValues] = useState({
@@ -40,7 +44,7 @@ export default function AddClientNewMember({mainMemberPhone}:{mainMemberPhone:st
     setIsSetMainMemberPhone(true)
   }
    function clearPhoneInput() {
-     setPhone('+7')
+     setPhone(isSetMainMemberPhone ? '+7' :mainMemberPhone)
      setIsSetMainMemberPhone(!setIsSetMainMemberPhone)
   }
     return(

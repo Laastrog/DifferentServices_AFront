@@ -2,12 +2,14 @@
 
 import { redirect } from "next/navigation";
 
-interface PrevStateProps{
+export interface PrevStateProps{
     messages: string[]
     phone?: string
     firstName?: string
     secondName?: string
     patronymic?: string
+    clientUuid?: string
+    member?: string
 }
 
 export async function AddClientNewMembers(state: PrevStateProps,formdata: FormData){
@@ -19,6 +21,7 @@ export async function AddClientNewMembers(state: PrevStateProps,formdata: FormDa
     const patronymic = formdata.get("patronymic") as string;
 
     let clientUuid = null
+    let member = null
     // console.log(phone, firstName, secondName, patronymic);
     try {
         // Адресс апи бека для создания нового клиента
@@ -58,18 +61,17 @@ export async function AddClientNewMembers(state: PrevStateProps,formdata: FormDa
         console.log("Ошибка на создание мембера", error)
         return {
             messages: ["Перегрузка сервера"],
+            firstName,
+            secondName,
+            patronymic
+
         }
     }
     if(clientUuid) redirect('/clients/'+ clientUuid)
     return{
-            messages: [],
+            messages: ["Изменения добавлены;"],
             firstName,
             secondName,
             patronymic
         }
-    
-        
-        
-        
-
 }

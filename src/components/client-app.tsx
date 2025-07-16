@@ -1,8 +1,11 @@
+"use client"
 import { AddClientNewMembers } from "@/app/clients/[clientUuid]/action"
+import AddClientNewMember from "@/app/clients/[clientUuid]/components/add-client-new-member"
+import { useActionState, useEffect, useState } from "react"
 import { inflate } from "zlib"
 
 
-interface ClientAppProps{
+export interface ClientAppProps{
     data:{
         mainMember:{
             phone:string,
@@ -13,20 +16,39 @@ interface ClientAppProps{
         members: MemberProps[]
     }
 }
-interface MemberProps{
+export interface MemberProps{
     phone:string,
     firstName:string,
     secondName:string,
     patronymic:string
 }
 
+export const initialState  = {
+    messages: [],
+    phone: '+7',
+    firstName: '',
+    secondName: '',
+    patronymic: ''
+  }
+
 export default function ClientApp({data}:ClientAppProps){
+    const [members, setMembers] = useState<MemberProps[]>(data.members)
+    const [open, SetOpen] = useState<boolean>(false)
+    const [state, formAction, pending] = useActionState(AddClientNewMembers, initialState)
+
+    useEffect(()=>{
+        function handleState(){
+            console.log("HANDLE STATE",state)
+        }
+        handleState()
+    },[state])
+    
     return (
         <>
                 <>
                     <h1 className="flex flex-col text-3xl ">Просмотр всех членов семьи:</h1>
                     <div>
-                        {/* <AddClientNewMembers mainMemberPhone={data.mainMember.phone}/> */}
+                        <AddClientNewMember mainMemberPhone={data.mainMember.phone} open={open} SetOpen={SetOpen} state={state} formAction={formAction} pending={pending}/>
                     </div>
                 </>
                 <div>
